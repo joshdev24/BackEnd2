@@ -9,6 +9,7 @@ import Home from "./screens/HomeScreen/HomeScreen"
 import CreateProductScreen from "./screens/CreateProductScreen/CreateProductScreen"
 import UpdateProduct from "./screens/UpdateProductScreen/UpdateProduct"
 import ProductDetails from "./screens/ProductDetailScreen/ProductDetail"
+import VerifyMail2 from "./Verify.JSX"
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/register" element={<Register />}/>
         <Route path="/forgot-password" element={<ForgotPassword />}/>
         <Route path="/reset-password/:reset_token" element={<ResetPassword />}/>
+        <Route path="/verify/:verification_token" element={<VerifyMail2 />}/>
         <Route path='/home' element={<Home/>}/>
         <Route path='/product/new' element={<CreateProductScreen/>}/>
         <Route path="/product/:product_id" element={<ProductDetails />} />
