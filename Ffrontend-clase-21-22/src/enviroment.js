@@ -1,5 +1,5 @@
 ENVIROMENT = {
-    URL_BACK: 'https://proyecto-final-back-end-seven.vercel.app'
+    URL_BACKEND: 'https://proyecto-final-back-end-seven.vercel.app'
 }
 
 
