@@ -78,6 +78,58 @@ app.get("/products/:product_id/update", (res, req) =>{
     )
     })
 
+app.get("/products/:product_id/update", (req, res) => {
+    const {product_id} = req.params
+    const {nombre, precio, stock, descripcion} = req.body
+    const productoActualizado = {nombre, precio, stock , descripcion}
+    const ERRORES = {
+        nombre: null,
+        precio: null,
+        stock: null,
+        descripcion: null
+    }
+    if (!req.body.nombre.trim() || !isNaN(req.body.nombre) ) {
+        ERRORES.nombre = "No se puede enviar un valor numero o vacio!"
+        
+    }
+    if (!req.body.precio.trim() || !isNaN(req.body.precio) ) {
+        ERRORES.precio = "No se puede enviar un valor numero o vacio!"
+        
+    }
+    if (!req.body.stock.trim() || !isNaN(req.body.stock) ) {
+        ERRORES.stock = "No se puede enviar un valor numero o vacio!"
+        
+    }
+
+
+    let hayError = Object.values(ERRORES).some(error => error !== null)
+
+    if (hayError) {
+        return res.render("product-form-uodate", 
+            {data: {
+                error: ERRORES,
+                form_state:{
+                    product:{...productoActualizado, id: product_id}
+                }
+            }
+            
+        })
+    }
+
+    const productoIndex = productos.findIndex(producto => producto.id === Number(product_id))
+    productos[productoIndex] = {
+        ...productos[productoIndex],
+        nombre,
+        precio,
+        stock,
+        descripcion
+    }
+
+    res.redirect(`/products/${product_id}`)
+
+
+})   
+
 app.get('/', (req, res) => {
     try {
         const productos = [
