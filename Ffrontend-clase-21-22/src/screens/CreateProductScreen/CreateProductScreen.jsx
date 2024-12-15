@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { getAuthenticatedHeaders, POST } from '../../fetching/http.fetching'
 import { extractFormData } from '../../utils/extractFormData'
+import ENVIROMENT from '../../enviroment'
 
 const CreateProductScreen = () => {
 	
@@ -23,7 +24,7 @@ const CreateProductScreen = () => {
 			//Agregamos la image al objeto con los valores de mi form
 			form_values_object.image = image
 			console.log('evento submit')
-			const response = await POST('http://localhost:3000/api/products', {
+			const response = await POST(`${ENVIROMENT.URL_BACKEND}/api/products`, {
 				headers: getAuthenticatedHeaders(),
 				body: JSON.stringify(form_values_object)
 			})
